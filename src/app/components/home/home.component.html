@@ -1,7 +1,11 @@
+<!-- <section class="max-w-md mx-auto flex flex-col gap-4 mb-4">
+    <app-comment-form (formSubmitted)="createComment()"></app-comment-form>
+</section> -->
+
 <section class="max-w-md mx-auto flex flex-col gap-4 mb-4">
-    <app-comment-form></app-comment-form>
+    <app-comment-form (formSubmitted)="createComment( $event )"></app-comment-form>
 </section>
 
 <section class="max-w-md mx-auto flex flex-col gap-4">
-    <app-comments [comment]="comment" *ngFor="let comment of comments()"></app-comments>
+    <app-comments [comment]="comment" *ngFor="let comment of comments(); trackBy: commentTrackBy"></app-comments>
 </section>

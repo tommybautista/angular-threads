@@ -39,11 +39,11 @@
     </dl>
     <section class="my-4" *ngIf="isReplying()">
         <div>
-            <app-comment-form placeholder="Write your reply" buttonText="Send"></app-comment-form>
+            <app-comment-form (formSubmitted)="createComment( $event )" placeholder="Write your reply" buttonText="Send"></app-comment-form>
         </div>
     </section>
     <section class="nested-comments" *ngIf="isExpanded()">
-        <app-comments [comment]="nestedCommnent" *ngFor="let nestedCommnent of nestedComments()"></app-comments>
+        <app-comments [comment]="nestedCommnent" *ngFor="let nestedCommnent of nestedComments(); trackBy: commentTrackBy"></app-comments>
     </section>
 </article>
 
