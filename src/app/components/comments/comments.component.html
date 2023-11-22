@@ -6,7 +6,7 @@
     <div class="sm:flex sm:justify-between sm:gap-4">
         <div>
         <h3 class="text-lg font-bold text-gray-900 sm:text-xl">
-            Building a SaaS product as a software developer
+            {{comment.user.name}}
         </h3>
 
 
@@ -16,8 +16,7 @@
 
     <div class="mt-4">
         <p class="text-sm text-gray-500">
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. At velit illum
-            provident a, ipsa maiores deleniti consectetur nobis et eaque.
+            {{comment.text}}
         </p>
     </div>
 
@@ -32,21 +31,19 @@
             12 Likes
         </button>
 
-        <button (click)="toggleExpanded()" class="duration-200" [class.rotate-180]="isExpanded">
+        <button (click)="toggleExpanded()" class="duration-200" [class.rotate-180]="isExpanded()">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
             </svg>
         </button>
     </dl>
-    <section class="nested-comments" *ngIf="isReplying">
+    <section class="my-4" *ngIf="isReplying()">
         <div>
-            This is where you reply
+            <app-comment-form placeholder="Write your reply" buttonText="Send"></app-comment-form>
         </div>
     </section>
-    <section class="nested-comments" *ngIf="isExpanded">
-        <div>
-            This show expanded-comments
-        </div>
+    <section class="nested-comments" *ngIf="isExpanded()">
+        <app-comments [comment]="nestedCommnent" *ngFor="let nestedCommnent of nestedComments()"></app-comments>
     </section>
 </article>
 
